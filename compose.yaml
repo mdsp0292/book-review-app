@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: server
+      dockerfile: Dockerfile_local
+    working_dir: /server/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./server:/server
+    ports:
+      - "8000:8000"
+#  redis:
+#    image: "redis:alpine"
