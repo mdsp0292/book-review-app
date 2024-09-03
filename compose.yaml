@@ -2,20 +2,30 @@ services:
   backend:
     build:
       context: server
-      dockerfile: Dockerfile_local
+      dockerfile: dev.Dockerfile
     working_dir: /server/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1 --reload"
     volumes:
       - ./server:/server
+    env_file:
+      - .env
     ports:
       - "8000:8000"
+    depends_on:
+       db:
+          condition: service_healthy
+    privileged: true
   db:
-    image: postgres:14-alpine
+    image: postgres:15.4-alpine
     ports:
-        - 5432:5432
+        - "5432:5432"
     volumes:
       - ~/db/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=S3cret
       - POSTGRES_USER=app_test_user
       - POSTGRES_DB=app_test_db
+    healthcheck:
+      test: [ "CMD", "sh", "-c", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 5s
+      start_period: 5s

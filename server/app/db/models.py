@@ -1,5 +1,6 @@
-from server.app.db.database import Base
 from sqlalchemy import Column, Integer, String, TIMESTAMP, Boolean, text
+
+from db.base import Base
 
 
 class Product(Base):

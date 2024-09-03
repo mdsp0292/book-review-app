@@ -1,4 +1,7 @@
 FROM python:3.11-slim
+
+WORKDIR app
+
 COPY app/requirements.txt /app/requirements.txt
 COPY app/requirements.dev.txt /app/requirements.dev.txt
 

@@ -1,19 +1,33 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 
 from api import products
 from exceptions.custom_http_exception import CustomHttpException, custom_http_exception_handler
-from db import database
+from util.settings import settings
 
-app = FastAPI(title="Book Review APP API")
-app.add_exception_handler(CustomHttpException, custom_http_exception_handler)
 
-# API routes
-v1_router = APIRouter()
-v1_router.include_router(products.router, prefix='/v1', tags=['Products'])
+def init_app():
+    api_app = FastAPI(title=settings.app_title, version="1.0.0")
+    api_app.add_exception_handler(CustomHttpException, custom_http_exception_handler)
 
-app.include_router(v1_router)
-# database.create_tables()
+    api_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    # API routes
+    v1_router = APIRouter()
+    v1_router.include_router(products.router, prefix='/v1', tags=['Products'])
+
+    api_app.include_router(v1_router)
+    return api_app
+
+
+app = init_app()
 
 
 @app.get("/", include_in_schema=False)

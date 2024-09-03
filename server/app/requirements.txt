@@ -16,6 +16,7 @@ markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 mdurl==0.1.2
 pydantic==2.8.2
+pydantic-settings==2.4.0
 pydantic_core==2.20.1
 Pygments==2.18.0
 python-dotenv==1.0.1
@@ -32,4 +33,6 @@ uvloop==0.20.0
 watchfiles==0.24.0
 websockets==13.0.1
 SQLAlchemy==2.0.32
+psycopg2-binary==2.9.7
+alembic==1.13.1
 sqlmodel==0.0.22
