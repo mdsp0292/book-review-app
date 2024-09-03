@@ -29,3 +29,13 @@ services:
       test: [ "CMD", "sh", "-c", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 5s
       start_period: 5s
+#  ui:
+#    build:
+#      context: ui
+#      dockerfile: dev.Dockerfile
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - REACT_APP_API_URL="http://backend:8000"
+#    depends_on:
+#      - backend

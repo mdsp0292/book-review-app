@@ -1,29 +1,16 @@
-import ProductGridItem from "./ProductGridItem";
 import {useEffect, useState} from "react";
 import {retrieveProducts} from "../../common/ApiUtils";
+import "./products.css"
 
 
 type ProductGridItemProps = {
     id: number,
     title: string,
-    description: string,
-    image: string,
-    // thumbnail: string,
-    accentColor: string,
-    backgroundColor: string,
-    textColor: string
-
+    author: string,
+    publish_date: string,
 }
-export default function ProductGrid() {
-    const style = {
-        padding: '40px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(500px, 1fr))',
-        gridGap: '20px',
-        rowGap: '20px',
-        columnGap: '20px',
-    }
 
+export default function ProductGrid() {
     const [productList, setProductList] = useState<ProductGridItemProps[]>([]);
 
 
@@ -35,24 +22,29 @@ export default function ProductGrid() {
         getProducts()
     }, [])
 
-
-
-    // const { products} = props
-
-
     return (
-        <div style={style}>
-            {productList.map(product => (
-                <ProductGridItem
-                    key={product.id}
-                    id={product.id}
-                    accentColor={product.accentColor}
-                    backgroundColor={product.backgroundColor}
-                    description={product.description}
-                    thumbnail={product.image}
-                    textColor={product.textColor}
-                    title={product.title} />
-            ))}
+        <div className="styled-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publish date</th>
+                </tr>
+                </thead>
+            <tbody>
+            {productList.map(product => {
+                return (
+                    <tr key={product.id}>
+                        <td>{product.title}</td>
+                        <td>{product.author}</td>
+                        <td>{product.publish_date}</td>
+                    </tr>
+                )
+            })}
+                </tbody>
+            </table>
         </div>
-    )
+
+)
 }

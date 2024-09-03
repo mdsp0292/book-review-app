@@ -23,8 +23,8 @@ def upgrade() -> None:
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
-    sa.Column('description', sa.String(), nullable=False),
-    sa.Column('image', sa.String(), nullable=True),
+    sa.Column('author', sa.String(), nullable=False),
+    sa.Column('publish_date', sa.String(), nullable=True),
     sa.Column('deleted', sa.Boolean(), server_default='TRUE', nullable=True),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), server_default=sa.text('now()'), nullable=True),
     sa.PrimaryKeyConstraint('id')

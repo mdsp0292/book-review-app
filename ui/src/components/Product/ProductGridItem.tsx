@@ -5,21 +5,22 @@ type ProductGridItemProps = {
     id: number,
     title: string,
     description: string,
-    // image: string,
     thumbnail: string,
     accentColor: string,
-    backgroundColor: string,
-    textColor: string
 
 }
 
 const ProductGridItem = (props : ProductGridItemProps ) => {
-    const { id, title, description, thumbnail, backgroundColor, accentColor, textColor} = props
+    const { id, title, description, accentColor} = props
+    let thumbnail = "/default_book_avatar.png"
+    if (props.thumbnail != null){
+        thumbnail = props.thumbnail
+    }
     const style = {
-        // borderLeft: `solid 3px ${accentColor}`,
         borderRadius: '5px',
         padding: '10px',
-        backgroundColor: '#F2F2F2',
+        // backgroundColor: "rgb(34,193,195)",
+        // background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)",
         color: '#08070b',
     }
 
@@ -28,7 +29,6 @@ const ProductGridItem = (props : ProductGridItemProps ) => {
     }
 
     const priceStyle = {
-        // textAlign: 'right',
         fontSize: '11px',
         fontWeight: 'bold',
         marginTop: '10px',
