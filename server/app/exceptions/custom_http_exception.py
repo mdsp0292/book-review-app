@@ -7,7 +7,7 @@ from fastapi.logger import logger
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException
 
-from app.settings import settings
+from util.settings import settings
 
 
 class CustomHttpException(HTTPException):

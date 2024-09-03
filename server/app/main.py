@@ -1,18 +1,25 @@
-from typing import Union
+from fastapi import FastAPI, APIRouter
+from starlette.responses import RedirectResponse
 
-from fastapi import FastAPI
-
-from app.exceptions.custom_http_exception import CustomHttpException, custom_http_exception_handler
+from api import products
+from exceptions.custom_http_exception import CustomHttpException, custom_http_exception_handler
+from db import database
 
 app = FastAPI(title="Book Review APP API")
 app.add_exception_handler(CustomHttpException, custom_http_exception_handler)
 
+# API routes
+v1_router = APIRouter()
+v1_router.include_router(products.router, prefix='/v1', tags=['Products'])
 
-@app.get("/")
+app.include_router(v1_router)
+# database.create_tables()
+
+
+@app.get("/", include_in_schema=False)
 def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+    """
+    Redirect to Docs page
+    :return:
+    """
+    return RedirectResponse(url='/docs')

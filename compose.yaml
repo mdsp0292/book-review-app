@@ -9,5 +9,13 @@ services:
       - ./server:/server
     ports:
       - "8000:8000"
-#  redis:
-#    image: "redis:alpine"
+  db:
+    image: postgres:14-alpine
+    ports:
+        - 5432:5432
+    volumes:
+      - ~/db/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=app_test_user
+      - POSTGRES_DB=app_test_db

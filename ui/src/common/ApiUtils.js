@@ -11,7 +11,6 @@ async function retrieveProducts() {
     }
 }
 
-
 async function retrieveProduct(id) {
     try {
         const response = await fetch(`${ENDPOINT}/products/${id}`)
