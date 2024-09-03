@@ -4,4 +4,5 @@
     bottom: 100px;
     left: 10%;
     text-align: center;
+    overflow: auto;
 }

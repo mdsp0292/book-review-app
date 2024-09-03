@@ -23,7 +23,7 @@ export default function ProductGrid() {
     }, [])
 
     return (
-        <div className="styled-table">
+        <div className="books-list-table">
             <table>
                 <thead>
                 <tr>
