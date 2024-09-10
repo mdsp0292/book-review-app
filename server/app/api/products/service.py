@@ -41,7 +41,6 @@ def create_product(
         product: schemas.ProductCreate,
         db: Session = Depends(get_db)
 ):
-
     product_to_create = Product(
         title=product.title,
         author=product.author,

@@ -1,5 +1,5 @@
 .books-list-table {
-    top: 100px;
+    /*top: 100px;*/
     overflow: auto;
     border-collapse: collapse;
     max-width: 90%;
@@ -7,9 +7,12 @@
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
+.books-list-table table {
+    margin-left: auto;
+    margin-right: auto;
+}
 .books-list-table thead tr {
     background-color: #207f3f;
     color: #ffffff;
@@ -36,4 +39,47 @@
 .books-list-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+.create-form {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid;
+    padding: 10px;
+}
+input[type=text], input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: #ffffff;
+    padding: 10px 10px;
+    background-color: #dc6969;
+}
+
+.success {
+    color: #ffffff;
+    padding: 10px 10px;
+    background-color: #68da6e;
 }

@@ -2,7 +2,7 @@
 
 Revision ID: 31b091b660ed
 Revises: 
-Create Date: 2024-09-03 06:01:43.938836
+ProductCreate Date: 2024-09-03 06:01:43.938836
 
 """
 from typing import Sequence, Union

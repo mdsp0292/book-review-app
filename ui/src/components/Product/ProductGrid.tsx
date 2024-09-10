@@ -1,4 +1,5 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import {retrieveProducts} from "../../common/ApiUtils";
 import "./products.css"
 
@@ -23,28 +24,43 @@ export default function ProductGrid() {
     }, [])
 
     return (
-        <div className="books-list-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publish date</th>
-                </tr>
-                </thead>
-            <tbody>
-            {productList.map(product => {
-                return (
-                    <tr key={product.id}>
-                        <td>{product.title}</td>
-                        <td>{product.author}</td>
-                        <td>{product.publish_date}</td>
-                    </tr>
-                )
-            })}
-                </tbody>
-            </table>
+        <div>
+            {productList.length === 0 ? (
+                    <div>
+                        <h2>No Records Found</h2>
+                        <p>
+                            <Link to="/create">Add a new record</Link>
+                        </p>
+                    </div>
+            ) : (
+                <div className="books-list-table">
+                    <div>
+                        <p>
+                            <Link to="/create">Add new record</Link>
+                        </p>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Publish date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {productList.map(product => {
+                            return (
+                                <tr key={product.id}>
+                                    <td>{product.title}</td>
+                                    <td>{product.author}</td>
+                                    <td>{product.publish_date}</td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
-
-)
+    )
 }

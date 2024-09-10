@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ProductCreate(BaseModel):
-    title: str
-    author: str
+    title: str = Field(..., min_length=1)
+    author: str = Field(..., min_length=1)
     publish_date: str | None = None
 
 
